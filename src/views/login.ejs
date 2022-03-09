@@ -90,11 +90,12 @@
             <!--LOGIN FORM-->
 
             <div id="form">
-                <form action="">
-                    USERNAME <br>
-                    <input type="text"> <br> <br>
-                    PASSWORD <br>
-                    <input type="password" name="" id=""> <br> <br>
+                <form id="form" action="books" method="get">
+                    <label for="email"> EMAIL </label> <br>
+                    <input type="text" id="email" name="email" required> <br> <br>
+                    <label for="password"> PASSWORD </label> <br>
+                    <input type="password" name="password" id="password" required> <br> <br>
+                    <div id="error" style="color: red;"></div>
                     <button type="submit">LOG IN</button>
                 </form>
                 <hr>
@@ -155,5 +156,6 @@
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+    <script src="js/loginValidation.js"></script>
 	</body>
 </html>
