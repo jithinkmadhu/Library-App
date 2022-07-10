@@ -1,44 +1,53 @@
 const express = require('express');
 const booksRouter = express.Router();
+const Bookdata = require('../model/Bookdata');
 function router(nav){
-    var books = [
-        {
-            title: 'Tom and Jerry',
-            author: 'Joseph Barbera',
-            genre: 'Cartoon',
-            img: 'tomandjerry.jpg'
-        },
-        {
-            title: 'Harry Potter',
-            author: 'J K Rowling',
-            genre: 'Fantasy',
-            img: 'Harry.jpg'
-        },
-        {
-            title: 'Paathummayude Aadu',
-            author: 'Basheer',
-            genre: 'Drama',
-            img: 'PathummayudeAadu.jpg'
-        }
+    // var books = [
+    //     {
+    //         title: 'Tom and Jerry',
+    //         author: 'Joseph Barbera',
+    //         genre: 'Cartoon',
+    //         img: 'tomandjerry.jpg'
+    //     },
+    //     {
+    //         title: 'Harry Potter',
+    //         author: 'J K Rowling',
+    //         genre: 'Fantasy',
+    //         img: 'Harry.jpg'
+    //     },
+    //     {
+    //         title: 'Paathummayude Aadu',
+    //         author: 'Basheer',
+    //         genre: 'Drama',
+    //         img: 'PathummayudeAadu.jpg'
+    //     }
         
-    ]
+    // ]
     
     booksRouter.get('/',function(req,res){
-        res.render("books",
-        {
-            nav,
-            title: 'Library',
-            books
+        Bookdata.find()
+        .then(function(books){
+            res.render("books",
+            {
+                nav,
+                title: 'Library',
+                books
+            });
         });
+        
     });
     
     booksRouter.get('/:id',function(req,res){
         const id = req.params.id
-        res.render('book',{
-            nav,
-            title: 'Library',
-            book: books[id]
+        Bookdata.findOne({_id:id})
+        .then(function(book){
+            res.render('book',{
+                nav,
+                title: 'Library',
+                book
+            });
         });
+        
     });
 
     return booksRouter;
